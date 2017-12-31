@@ -51,7 +51,12 @@ def exactMario23(test):
 
 @t.test(10)
 def handlesWrongInput(test):
-	test.test = lambda : not assertlib.contains(lib.outputOf(_fileName, stdinArgs=[-100]), "#")
-	test.test = lambda : not assertlib.contains(lib.outputOf(_fileName, stdinArgs=[100]), "#")
-	test.test = lambda : not assertlib.contains(lib.outputOf(_fileName, stdinArgs=[24]), "#")
+	def testMethod():
+		for wrongInput in [-100, 100, 24]:
+			output = lib.outputOf(_fileName, stdinArgs=[wrongInput])
+			if assertlib.contains(output, "#"):
+				return False
+		return True
+
+	test.test = testMethod
 	test.description = lambda : "handelt een verkeerde input van -100, 100 en 24 af"
