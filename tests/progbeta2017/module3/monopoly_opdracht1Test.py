@@ -53,17 +53,22 @@ def hassimuleer_potjeAndsimuleer_groot_aantal_potjes_Monopoly(test):
 def correctAverageTrump(test):
 
 	def try_run():
-		try:	
+		try:
 			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)()
-			test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
-			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(), None):
-				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
-			return testInput
+			test.fail = lambda info : "Zorg dat de functie simuleer_groot_aantal_potjes_Monopoly als argument het aantal potjes heeft"
+			return False
 		except:
-			testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000000)
-			if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000000), None):
-				test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
-			return testInput
+			try:	
+				testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000)
+				test.success = lambda info : "De code werkt zonder startgeld, je kunt nu startgeld invoeren!"
+				if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000), None):
+					test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
+				return testInput
+			except:
+				testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000)
+				if assertlib.sameType(lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000), None):
+					test.fail = lambda info : "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het gemiddeld aan benodigde worpen returnt en ook alleen deze waarde returnt"
+				return testInput
 
 
 	test.fail = lambda info : "de correcte waarde is ongeveer 147"
@@ -78,7 +83,7 @@ def correctAverageStartgeld(test):
 
 	def try_run():
 		try:
-			return lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500)
+			return lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1500)
 		except:
 			return False
 

@@ -18,15 +18,15 @@ def hassimuleer_groot_aantal_potjes_Monopoly(test):
 	def try_run():
 		if assertlib.fileContainsFunctionDefinitions(_fileName, "simuleer_groot_aantal_potjes_Monopoly"):
 			try:	
-				testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1000000, 1000000)
+				testInput = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1000000, 1000000)
 				return True
 			except:
 				return False
 		return False
 
 	test.test = try_run
-	test.fail = lambda info : "zorg dat de functie twee argumenten heeft, startgeld voor speler 1 en startgeld voor speler 2"
-	test.description = lambda : "definieert de functie simuleer_potje en simuleer_groot_aanal_potjes_Monopoly met twee argumenten"
+	test.fail = lambda info : "zorg dat de functie drie argumenten heeft, het aantal potjes, startgeld voor speler 1 en startgeld voor speler 2"
+	test.description = lambda : "definieert de functie simuleer_potje en simuleer_groot_aanal_potjes_Monopoly met drie argumenten"
 	test.timeout = lambda : 90
 
 
@@ -34,7 +34,7 @@ def hassimuleer_groot_aantal_potjes_Monopoly(test):
 @t.test(10)
 def correctAverageDiv(test):
 	def testMethod():
-		outcome = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(1500, 1500)
+		outcome = lib.getFunction("simuleer_groot_aantal_potjes_Monopoly", _fileName)(10000, 1500, 1500)
 		if assertlib.sameType(outcome, None):
 			info = "Zorg er voor dat de functie simuleer_groot_aantal_potjes_Monopoly het verschil in het bezit van straten returnt en alleen deze waarde returnt"
 		elif assertlib.between(outcome, 0, 99999999):
