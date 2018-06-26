@@ -53,7 +53,7 @@ def correctLongestFreezing(test):
 @t.test(5)
 def correctDateLongestFreezingp(test):
 	tsts = ['2', 'februari', 'February']
-	test.test = lambda : assertlib.contains(lib.outputOf(_fileName), '24') and\
+	test.test = lambda : assertlib.contains(lib.outputOf(_fileName), ' 24 ') and\
 			     sum([assertlib.contains(lib.outputOf(_fileName), tst) for tst in tsts])\
 		             and assertlib.contains(lib.outputOf(_fileName), '1947')
 	test.description = lambda : "print laatste dag van de langste periode dat het aaneengesloten heeft gevroren"
